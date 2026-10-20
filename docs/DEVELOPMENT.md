@@ -1,0 +1,39 @@
+# 前端开发与维护约定
+
+工程已运行，入口src/main.ts。Vue3.5、TypeScript5.9、Vite7、Vue Router4、Pinia3、Element Plus2，准确版本见package-lock.json。App仍使用uni-app/HBuilderX，管理Web独立构建与鉴权。
+
+## 目录职责
+
+```text
+src/main.ts / App.vue / router.ts # 入口、中文provider、路由和权限
+src/layouts/                     # 侧栏、顶栏、移动导航
+src/components/                  # Cy输入、选择、日期、表格、确认、分页和状态
+src/pages/                       # 业务组合
+src/domain/                      # 纯校验、时区展示、草稿内存
+src/services/http.ts             # envelope、超时、取消、会话事件
+src/stores/                      # auth、theme、ui
+src/composables/                  # 游标、读请求、幂等写和离开守卫
+src/theme/                       # App生成色板、桌面尺寸与库适配
+src/types/                       # DTO类型
+tests/unit/ / tests/e2e/          # 纯逻辑与真实服务流程
+```
+
+页面组合、domain运算、HTTP传输、composables共享行为、Pinia跨页面状态分别维护。中文注释解释Vue机制和业务约束，基础阅读见 [CODE-READING](CODE-READING.md)。不在页面散落医学系数。
+
+## 复用、主题和安全
+
+现有Cy组件是唯一运行时入口；Element Plus负责浮层与键盘行为，Cy层负责外观、中文与双主题。日期保存YYYY-MM-DD，展示统一Asia/Shanghai。
+
+App theme.ts是颜色来源；npm run tokens同步、tokens:check查漂移，生成文件不手改。小字号可读性变体集中在web-tokens.css，页面禁止颜色常量。Figma SVG在public/icons，保留自然尺寸，20px盒定位。
+
+useResource/useCursorList取消旧请求。筛选在服务端完成，URL保存非秘密查询和游标，不显示虚构页数。useCommand对相同失败动作复用幂等key，busy阻止并发点击，后端幂等兜底。
+
+If-Match使用最新revision，条目与版本分别处理。成功后读取最新详情；409保留输入，确认后加载新版本。401清除内存token和活动弹窗，返回安全登录入口；只暂存知识草稿，不缓存密码。正文纯文本，无v-html。
+
+## 验证与扩展
+
+安装启动见 [README](../README.md)，验证范围见 [IMPLEMENTATION](IMPLEMENTATION.md)。E2E读取本机忽略文件的初始账号密码，也支持ADMIN_TEST_USERNAME/ADMIN_TEST_PASSWORD。关闭网络trace以免记录Bearer。结束时停用夹具账号；测试内容不代表临床依据。
+
+接口修改同步维护DTO、API契约、UI校验及有意义的测试。新增医学运算须有独立纯逻辑、论文/指南来源、适用范围和回归样本，不能复用知识审核绕过模型审批。
+
+Java服务保持现有Java8/Spring Boot2.7基线；旧依赖的维护升级另立任务，本机测试不替代生产容量与部署验收。

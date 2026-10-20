@@ -1,0 +1,387 @@
+const assetPathPrefix = "https://www.figma.com/api/mcp/asset/6db8bba8-c7b7-4681-8429-af1e2aa6b63a";
+const imgIconCalendar = `${assetPathPrefix}/5e264.svg`;
+const imgIconUser = `${assetPathPrefix}/9613c.svg`;
+const imgIconEdit = `${assetPathPrefix}/5d92f.svg`;
+const imgIconList = `${assetPathPrefix}/848b8.svg`;
+const imgIconGrid = `${assetPathPrefix}/59d9b.svg`;
+
+type CyButtonProps = {
+  className?: string;
+  label?: string;
+  style?: "Primary" | "Secondary";
+};
+
+function CyButton({ className, label = "保存草稿", style = "Primary" }: CyButtonProps) {
+  const isPrimary = style === "Primary";
+  const isSecondary = style === "Secondary";
+  return (
+    <div className={className || `content-stretch flex gap-[var(--web-space-8,8px)] h-[var(--web-desktop-control,40px)] items-center justify-center relative rounded-[var(--web-radius-button,16px)] w-[152px] ${isSecondary ? "bg-[var(--glass-fillStrong,rgba(255,255,255,0.88))] border border-[var(--grid,rgba(90,97,120,0.14))] border-solid" : ""}`} id={isSecondary ? "node-3_4" : "node-3_2"} style={isPrimary ? { backgroundImage: "linear-gradient(157.16634551673283deg, var(--action-start,rgb(40, 92, 236)) 7.6923%, var(--action-end,rgb(8, 125, 114)) 84.615%)" } : undefined}>
+      {isPrimary && (
+        <p className="[word-break:break-word] font-['Noto_Sans_SC:Medium'] font-medium leading-[22px] relative shrink-0 text-[14px] text-[color:var(--text-inverse,white)] whitespace-nowrap" data-node-id="3:3">
+          {label}
+        </p>
+      )}
+      {isSecondary && (
+        <p className="[word-break:break-word] font-['Noto_Sans_SC:Medium'] font-medium leading-[22px] relative shrink-0 text-[14px] text-[color:var(--primary,#2f6bff)] whitespace-nowrap" data-node-id="3:5">
+          {label}
+        </p>
+      )}
+    </div>
+  );
+}
+
+type CyReferenceEvidenceProps = {
+  className?: string;
+  evidence?: string;
+  references?: string;
+};
+
+function CyReferenceEvidence({ className, evidence = "本条为内容结构示例。正式发布前由审核人员核对来源、适用范围和表述一致性，引用登记不等于临床认证。", references = "[1] Hadlock et al. Estimation of fetal weight… 1985.\n[2] ISUOG Practice Guidelines: ultrasound assessment…" }: CyReferenceEvidenceProps) {
+  return (
+    <div className={className || "[word-break:break-word] backdrop-blur-[12px] bg-[var(--glass-fillStrong,rgba(255,255,255,0.88))] border border-[var(--glass-stroke,rgba(255,255,255,0.65))] border-solid content-stretch drop-shadow-[0px_8px_12px_rgba(20,30,60,0.08)] flex flex-col gap-[var(--web-space-16,16px)] items-start p-[var(--web-space-24,24px)] relative rounded-[var(--web-radius-card,24px)] w-[1152px]"} data-node-id="4:294" data-name="Cy/ReferenceEvidence">
+      <p className="font-['Noto_Sans_SC:Bold'] font-bold leading-[24px] relative shrink-0 text-[16px] text-[color:var(--text-primary,#1a1a2e)] whitespace-nowrap" data-node-id="4:295">
+        引用来源与编写依据
+      </p>
+      <div className="font-['Noto_Sans_SC:Regular'] font-normal leading-[0] relative shrink-0 text-[14px] text-[color:var(--text-secondary,#5a6178)] w-[1104px]" data-node-id="4:296">
+        {references ? (
+          <p className="leading-[22px] mb-0">{references}</p>
+        ) : (
+          <>
+            <p className="leading-[22px] mb-0">[1] Hadlock et al. Estimation of fetal weight… 1985.</p>
+            <p className="leading-[22px]">[2] ISUOG Practice Guidelines: ultrasound assessment…</p>
+          </>
+        )}
+      </div>
+      <p className="font-['Noto_Sans_SC:Medium'] font-medium leading-[22px] relative shrink-0 text-[14px] text-[color:var(--text-primary,#1a1a2e)] whitespace-nowrap" data-node-id="4:297">
+        依据说明
+      </p>
+      <p className="font-['Noto_Sans_SC:Regular'] font-normal leading-[22px] relative shrink-0 text-[14px] text-[color:var(--text-secondary,#5a6178)] w-[1104px]" data-node-id="4:298">
+        {evidence}
+      </p>
+    </div>
+  );
+}
+
+type CyDualExpressionEditProps = {
+  className?: string;
+  plain?: string;
+  pro?: string;
+};
+
+function CyDualExpressionEdit({ className, plain = "先确认报告是哪一天做的、当时怀孕多少周，以及数字旁边的单位。按报告如实记录，复查时再一起看变化。单次测量不能独立代替医生的综合判断。", pro = "核对本次检查日期、孕周及测量单位。记录报告原始数值，并注明采用的参考标准与来源。不同检查时点与测量方法可能影响可比性，解释时需结合连续记录与临床信息。" }: CyDualExpressionEditProps) {
+  return (
+    <div className={className || "backdrop-blur-[12px] bg-[var(--glass-fillStrong,rgba(255,255,255,0.88))] border border-[var(--glass-stroke,rgba(255,255,255,0.65))] border-solid content-stretch drop-shadow-[0px_8px_12px_rgba(20,30,60,0.08)] flex gap-[var(--web-space-16,16px)] items-start p-[var(--web-space-24,24px)] relative rounded-[var(--web-radius-card,24px)] w-[1154px]"} data-node-id="4:274" data-name="Cy/DualExpression/Edit">
+      <div className="content-stretch flex flex-col gap-[var(--web-space-12,12px)] items-start relative shrink-0 w-[544px]" data-node-id="4:275" data-name="专业表达">
+        <p className="[word-break:break-word] font-['Noto_Sans_SC:Bold'] font-bold leading-[24px] relative shrink-0 text-[16px] text-[color:var(--primary,#2f6bff)] whitespace-nowrap" data-node-id="4:276">
+          专业表达
+        </p>
+        <div className="backdrop-blur-[12px] bg-[var(--glass-fallback,#f5f9fc)] border border-[var(--glass-stroke,rgba(255,255,255,0.65))] border-solid content-stretch drop-shadow-[0px_8px_12px_rgba(20,30,60,0.08)] flex flex-col gap-[var(--web-space-8,8px)] items-start p-[var(--web-space-16,16px)] relative rounded-[var(--web-radius-input,12px)] shrink-0 w-[544px]" data-node-id="4:277" data-name="Content">
+          <p className="[word-break:break-word] font-['Noto_Sans_SC:Regular'] font-normal leading-[26px] relative shrink-0 text-[15px] text-[color:var(--text-primary,#1a1a2e)] w-[512px]" data-node-id="4:278">
+            {pro}
+          </p>
+        </div>
+        <p className="[word-break:break-word] font-['Noto_Sans_SC:Regular'] font-normal leading-[18px] relative shrink-0 text-[12px] text-[color:var(--text-tertiary,#697187)] whitespace-nowrap" data-node-id="4:279">
+          纯文本 · 每项最多 20,000 字符
+        </p>
+      </div>
+      <div className="content-stretch flex flex-col gap-[var(--web-space-12,12px)] items-start relative shrink-0 w-[544px]" data-node-id="4:280" data-name="白话表达">
+        <p className="[word-break:break-word] font-['Noto_Sans_SC:Bold'] font-bold leading-[24px] relative shrink-0 text-[16px] text-[color:var(--primary,#2f6bff)] whitespace-nowrap" data-node-id="4:281">
+          白话表达
+        </p>
+        <div className="backdrop-blur-[12px] bg-[var(--glass-fallback,#f5f9fc)] border border-[var(--glass-stroke,rgba(255,255,255,0.65))] border-solid content-stretch drop-shadow-[0px_8px_12px_rgba(20,30,60,0.08)] flex flex-col gap-[var(--web-space-8,8px)] items-start p-[var(--web-space-16,16px)] relative rounded-[var(--web-radius-input,12px)] shrink-0 w-[544px]" data-node-id="4:282" data-name="Content">
+          <p className="[word-break:break-word] font-['Noto_Sans_SC:Regular'] font-normal leading-[26px] relative shrink-0 text-[15px] text-[color:var(--text-primary,#1a1a2e)] w-[512px]" data-node-id="4:283">
+            {plain}
+          </p>
+        </div>
+        <p className="[word-break:break-word] font-['Noto_Sans_SC:Regular'] font-normal leading-[18px] relative shrink-0 text-[12px] text-[color:var(--text-tertiary,#697187)] whitespace-nowrap" data-node-id="4:284">
+          纯文本 · 每项最多 20,000 字符
+        </p>
+      </div>
+    </div>
+  );
+}
+
+type CyFieldProps = {
+  className?: string;
+  help?: string;
+  label?: string;
+  state?: "Default" | "ReadOnly";
+  value?: string;
+};
+
+function CyField({ className, help = " ", label = "字段名称", state = "Default", value = "请输入内容" }: CyFieldProps) {
+  const isReadOnly = state === "ReadOnly";
+  return (
+    <div className={className || "content-stretch flex flex-col gap-[var(--web-space-8,8px)] items-start relative w-[490px]"} id={isReadOnly ? "node-3_35" : "node-3_15"}>
+      <p className="[word-break:break-word] font-['Noto_Sans_SC:Medium'] font-medium leading-[22px] relative shrink-0 text-[14px] text-[color:var(--text-primary,#1a1a2e)] w-full" data-node-id="3:16">
+        {label}
+      </p>
+      <div className="backdrop-blur-[12px] bg-[var(--glass-fillStrong,rgba(255,255,255,0.88))] border border-[var(--grid,rgba(90,97,120,0.14))] border-solid content-stretch drop-shadow-[0px_8px_12px_rgba(20,30,60,0.08)] flex gap-[var(--web-space-8,8px)] h-[44px] items-center p-[var(--web-space-12,12px)] relative rounded-[var(--web-radius-input,12px)] shrink-0 w-full" id={isReadOnly ? "node-3_37" : "node-3_17"} data-name="Input">
+        <p className="[word-break:break-word] flex-[1_0_0] font-['Noto_Sans_SC:Regular'] font-normal leading-[22px] min-w-px relative text-[14px] text-[color:var(--text-secondary,#5a6178)]" data-node-id="3:18">
+          {value}
+        </p>
+      </div>
+      <p className="[word-break:break-word] font-['Noto_Sans_SC:Regular'] font-normal leading-[18px] relative shrink-0 text-[12px] text-[color:var(--text-tertiary,#697187)] w-full" data-node-id="3:19">
+        {help}
+      </p>
+    </div>
+  );
+}
+
+type CyPageHeaderProps = {
+  className?: string;
+  subtitle?: string;
+  title?: string;
+};
+
+function CyPageHeader({ className, subtitle = "维护内容、来源与版本记录", title = "知识内容" }: CyPageHeaderProps) {
+  return (
+    <div className={className || "[word-break:break-word] content-stretch flex flex-col gap-[var(--web-space-4,4px)] items-start relative w-[940px] whitespace-nowrap"} data-node-id="4:2" data-name="Cy/PageHeader">
+      <p className="font-['Noto_Sans_SC:Bold'] font-bold leading-[32px] relative shrink-0 text-[24px] text-[color:var(--text-primary,#1a1a2e)]" data-node-id="4:3">
+        {title}
+      </p>
+      <p className="font-['Noto_Sans_SC:Regular'] font-normal leading-[18px] relative shrink-0 text-[12px] text-[color:var(--text-secondary,#5a6178)]" data-node-id="4:4">
+        {subtitle}
+      </p>
+    </div>
+  );
+}
+
+function CyIconSystem({ className }: { className?: string }) {
+  return (
+    <div className={className || "relative size-[20px]"} data-node-id="8:122" data-name="Cy/Icon/system">
+      <div className="absolute left-0 overflow-clip size-[20px] top-0" data-node-id="8:123" data-name="Frame">
+        <div className="absolute inset-[12.5%]" data-node-id="8:124" data-name="icon/calendar">
+          <div className="absolute inset-[-6%]">
+            <img alt="" className="block max-w-none size-full" src={imgIconCalendar} />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function CyIconUsers({ className }: { className?: string }) {
+  return (
+    <div className={className || "relative size-[20px]"} data-node-id="8:113" data-name="Cy/Icon/users">
+      <div className="absolute left-0 overflow-clip size-[20px] top-0" data-node-id="8:114" data-name="Frame">
+        <div className="absolute inset-[16.67%_16.67%_12.5%_16.67%]" data-node-id="8:115" data-name="icon/user">
+          <div className="absolute inset-[-6.35%_-6.75%]">
+            <img alt="" className="block max-w-none size-full" src={imgIconUser} />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function CyIconReview({ className }: { className?: string }) {
+  return (
+    <div className={className || "relative size-[20px]"} data-node-id="8:118" data-name="Cy/Icon/review">
+      <div className="absolute left-0 overflow-clip size-[20px] top-0" data-node-id="8:119" data-name="Frame">
+        <div className="absolute inset-[12.5%_12.5%_16.67%_16.67%]" data-node-id="8:120" data-name="icon/edit">
+          <div className="absolute inset-[-6.35%]">
+            <img alt="" className="block max-w-none size-full" src={imgIconEdit} />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function CyIconContent({ className }: { className?: string }) {
+  return (
+    <div className={className || "relative size-[20px]"} data-node-id="8:108" data-name="Cy/Icon/content">
+      <div className="absolute left-0 overflow-clip size-[20px] top-0" data-node-id="8:109" data-name="Frame">
+        <div className="absolute inset-[12.5%_16.67%]" data-node-id="8:110" data-name="icon/list">
+          <div className="absolute inset-[-6%_-6.75%]">
+            <img alt="" className="block max-w-none size-full" src={imgIconList} />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function CyIconOverview({ className }: { className?: string }) {
+  return (
+    <div className={className || "relative size-[20px]"} data-node-id="8:127" data-name="Cy/Icon/overview">
+      <div className="absolute left-0 overflow-clip size-[20px] top-0" data-node-id="8:128" data-name="Frame">
+        <div className="absolute inset-[12.5%]" data-node-id="8:129" data-name="icon/grid">
+          <div className="absolute inset-[-6%]">
+            <img alt="" className="block max-w-none size-full" src={imgIconGrid} />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+type CySidebarProps = {
+  className?: string;
+  section?: "Content";
+};
+
+function CySidebar({ className, section = "Content" }: CySidebarProps) {
+  return (
+    <div className={className || "backdrop-blur-[12px] bg-[var(--glass-fill,rgba(255,255,255,0.72))] border border-[var(--glass-stroke,rgba(255,255,255,0.65))] border-solid content-stretch drop-shadow-[0px_8px_12px_rgba(20,30,60,0.08)] flex flex-col gap-[var(--web-space-24,24px)] h-[868px] items-start p-[var(--web-space-20,20px)] relative rounded-[var(--web-radius-card,24px)] w-[232px]"} data-node-id="3:110">
+      <div className="[word-break:break-word] content-stretch flex flex-col gap-[var(--web-space-8,8px)] items-start relative shrink-0 w-[192px] whitespace-nowrap" data-node-id="3:111" data-name="Brand">
+        <p className="font-['Noto_Sans_SC:Bold'] font-bold leading-[32px] relative shrink-0 text-[24px] text-[color:var(--primary,#2f6bff)]" data-node-id="3:112">
+          春雨孕算
+        </p>
+        <p className="font-['Noto_Sans_SC:Regular'] font-normal leading-[18px] relative shrink-0 text-[12px] text-[color:var(--text-secondary,#5a6178)]" data-node-id="3:113">
+          管理工作台
+        </p>
+      </div>
+      <div className="content-stretch flex flex-col gap-[var(--web-space-8,8px)] items-start relative shrink-0 w-[192px]" data-node-id="3:114" data-name="Navigation">
+        <div className="content-stretch flex gap-[var(--web-space-12,12px)] h-[46px] items-center p-[var(--web-space-12,12px)] relative rounded-[var(--web-radius-input,12px)] shrink-0 w-[192px]" data-node-id="3:115" data-name="Link:nav:Overview">
+          <CyIconOverview className="relative shrink-0 size-[20px]" />
+          <p className="[word-break:break-word] font-['Noto_Sans_SC:Medium'] font-medium leading-[22px] relative shrink-0 text-[14px] text-[color:var(--text-secondary,#5a6178)] whitespace-nowrap" data-node-id="I3:115;3:64">
+            工作台
+          </p>
+        </div>
+        <div className="bg-[var(--tint-blue,#e8f0ff)] content-stretch flex gap-[var(--web-space-12,12px)] h-[46px] items-center p-[var(--web-space-12,12px)] relative rounded-[var(--web-radius-input,12px)] shrink-0 w-[192px]" data-node-id="3:118" data-name="Link:nav:Content">
+          <CyIconContent className="relative shrink-0 size-[20px]" />
+          <p className="[word-break:break-word] font-['Noto_Sans_SC:Medium'] font-medium leading-[22px] relative shrink-0 text-[14px] text-[color:var(--primary,#2f6bff)] whitespace-nowrap" data-node-id="I3:118;3:67">
+            知识内容
+          </p>
+        </div>
+        <div className="content-stretch flex gap-[var(--web-space-12,12px)] h-[46px] items-center p-[var(--web-space-12,12px)] relative rounded-[var(--web-radius-input,12px)] shrink-0 w-[192px]" data-node-id="3:121" data-name="Link:nav:Review">
+          <CyIconReview className="relative shrink-0 size-[20px]" />
+          <p className="[word-break:break-word] font-['Noto_Sans_SC:Medium'] font-medium leading-[22px] relative shrink-0 text-[14px] text-[color:var(--text-secondary,#5a6178)] whitespace-nowrap" data-node-id="I3:121;3:64">
+            审核发布
+          </p>
+        </div>
+        <div className="content-stretch flex gap-[var(--web-space-12,12px)] h-[46px] items-center p-[var(--web-space-12,12px)] relative rounded-[var(--web-radius-input,12px)] shrink-0 w-[192px]" data-node-id="3:124" data-name="Link:nav:Users">
+          <CyIconUsers className="relative shrink-0 size-[20px]" />
+          <p className="[word-break:break-word] font-['Noto_Sans_SC:Medium'] font-medium leading-[22px] relative shrink-0 text-[14px] text-[color:var(--text-secondary,#5a6178)] whitespace-nowrap" data-node-id="I3:124;3:64">
+            用户管理
+          </p>
+        </div>
+        <div className="content-stretch flex gap-[var(--web-space-12,12px)] h-[46px] items-center p-[var(--web-space-12,12px)] relative rounded-[var(--web-radius-input,12px)] shrink-0 w-[192px]" data-node-id="3:127" data-name="Link:nav:System">
+          <CyIconSystem className="relative shrink-0 size-[20px]" />
+          <p className="[word-break:break-word] font-['Noto_Sans_SC:Medium'] font-medium leading-[22px] relative shrink-0 text-[14px] text-[color:var(--text-secondary,#5a6178)] whitespace-nowrap" data-node-id="I3:127;3:64">
+            系统管理
+          </p>
+        </div>
+      </div>
+      <div className="[word-break:break-word] font-['Noto_Sans_SC:Regular'] font-normal leading-[0] relative shrink-0 text-[12px] text-[color:var(--text-tertiary,#697187)] w-[192px]" data-node-id="3:130">
+        <p className="leading-[18px] mb-0">内容有依据</p>
+        <p className="leading-[18px]">版本可追溯</p>
+      </div>
+    </div>
+  );
+}
+
+export default function WebW07LightDefault() {
+  return (
+    <div className="content-stretch flex gap-[var(--web-space-24,24px)] items-start p-[var(--web-space-16,16px)] relative size-full" data-node-id="5:435" style={{ backgroundImage: "linear-gradient(124.69515313166791deg, var(--bg-gradientStart,rgb(234, 242, 255)) 7.6923%, var(--bg-gradientMid,rgb(230, 247, 244)) 46.154%, var(--bg-gradientEnd,rgb(255, 240, 246)) 84.615%)" }} data-name="Web/W07/Light/Default">
+      <CySidebar className="backdrop-blur-[12px] bg-[var(--glass-fill,rgba(255,255,255,0.72))] border border-[var(--glass-stroke,rgba(255,255,255,0.65))] border-solid content-stretch drop-shadow-[0px_8px_12px_rgba(20,30,60,0.08)] flex flex-col gap-[var(--web-space-24,24px)] h-[1268px] items-start p-[var(--web-space-20,20px)] relative rounded-[var(--web-radius-card,24px)] shrink-0 w-[232px]" />
+      <div className="content-stretch flex flex-col gap-[var(--web-space-24,24px)] items-start relative shrink-0 w-[1152px]" data-node-id="5:457" data-name="Main">
+        <div className="content-stretch flex gap-[var(--web-space-12,12px)] items-center relative shrink-0 w-[1152px]" data-node-id="5:458" data-name="Topbar">
+          <p className="[word-break:break-word] font-['Noto_Sans_SC:Regular'] font-normal leading-[18px] relative shrink-0 text-[12px] text-[color:var(--text-secondary,#5a6178)] w-[840px] whitespace-pre-wrap" data-node-id="5:459">{`管理工作台  /  内容中心`}</p>
+          <CyButton className="bg-[var(--glass-fillStrong,rgba(255,255,255,0.88))] border border-[var(--grid,rgba(90,97,120,0.14))] border-solid content-stretch flex gap-[var(--web-space-8,8px)] h-[40px] items-center justify-center relative rounded-[var(--web-radius-button,16px)] shrink-0 w-[112px]" label="浅色模式" style="Secondary" />
+          <p className="[word-break:break-word] font-['Noto_Sans_SC:Medium'] font-medium leading-[22px] relative shrink-0 text-[14px] text-[color:var(--text-secondary,#5a6178)] whitespace-nowrap" data-node-id="5:462">
+            内容团队
+          </p>
+        </div>
+        <div className="content-stretch flex gap-[var(--web-space-12,12px)] items-center relative shrink-0 w-[1152px]" data-node-id="5:463" data-name="Page header">
+          <CyPageHeader className="[word-break:break-word] content-stretch flex flex-col gap-[var(--web-space-4,4px)] items-start relative shrink-0 w-[940px] whitespace-nowrap" subtitle="春雨孕算 · 内容中心" title="编辑知识版本" />
+        </div>
+        <div className="content-stretch flex flex-col gap-[var(--web-space-16,16px)] items-start relative shrink-0 w-[1152px]" data-node-id="5:467" data-name="Content">
+          <div className="backdrop-blur-[12px] bg-[var(--glass-fillStrong,rgba(255,255,255,0.88))] border border-[var(--glass-stroke,rgba(255,255,255,0.65))] border-solid content-stretch drop-shadow-[0px_8px_12px_rgba(20,30,60,0.08)] flex flex-col gap-[var(--web-space-16,16px)] items-start p-[var(--web-space-24,24px)] relative rounded-[var(--web-radius-card,24px)] shrink-0 w-[1152px]" data-node-id="5:468" data-name="基本信息">
+            <p className="[word-break:break-word] font-['Noto_Sans_SC:Bold'] font-bold leading-[24px] relative shrink-0 text-[16px] text-[color:var(--text-primary,#1a1a2e)] whitespace-nowrap" data-node-id="5:469">
+              基本信息
+            </p>
+            <CyField className="content-stretch flex flex-col gap-[var(--web-space-8,8px)] items-start relative shrink-0 w-[1104px]" label="标题" value="胎儿生长测量说明" />
+            <div className="content-stretch flex gap-[var(--web-space-12,12px)] items-center relative shrink-0 w-[1104px]" data-node-id="5:475" data-name="Metadata">
+              <CyField className="content-stretch flex flex-col gap-[var(--web-space-8,8px)] items-start relative shrink-0 w-[544px]" label="内容版本" state="ReadOnly" value="v4 · 草稿" />
+              <CyField className="content-stretch flex flex-col gap-[var(--web-space-8,8px)] items-start relative shrink-0 w-[544px]" label="分类" value="生长" />
+            </div>
+          </div>
+          <CyDualExpressionEdit className="backdrop-blur-[12px] bg-[var(--glass-fillStrong,rgba(255,255,255,0.88))] border border-[var(--glass-stroke,rgba(255,255,255,0.65))] border-solid content-stretch drop-shadow-[0px_8px_12px_rgba(20,30,60,0.08)] flex gap-[var(--web-space-16,16px)] items-start p-[var(--web-space-24,24px)] relative rounded-[var(--web-radius-card,24px)] shrink-0 w-[1154px]" />
+          <CyReferenceEvidence className="[word-break:break-word] backdrop-blur-[12px] bg-[var(--glass-fillStrong,rgba(255,255,255,0.88))] border border-[var(--glass-stroke,rgba(255,255,255,0.65))] border-solid content-stretch drop-shadow-[0px_8px_12px_rgba(20,30,60,0.08)] flex flex-col gap-[var(--web-space-16,16px)] items-start p-[var(--web-space-24,24px)] relative rounded-[var(--web-radius-card,24px)] shrink-0 w-[1152px]" />
+          <div className="backdrop-blur-[12px] bg-[var(--glass-fillStrong,rgba(255,255,255,0.88))] border border-[var(--glass-stroke,rgba(255,255,255,0.65))] border-solid content-stretch drop-shadow-[0px_8px_12px_rgba(20,30,60,0.08)] flex gap-[var(--web-space-16,16px)] items-start p-[var(--web-space-16,16px)] relative rounded-[var(--web-radius-card,24px)] shrink-0 w-[1152px]" data-node-id="5:502" data-name="Sticky actions">
+            <CyButton className="bg-[var(--glass-fillStrong,rgba(255,255,255,0.88))] border border-[var(--grid,rgba(90,97,120,0.14))] border-solid content-stretch flex gap-[var(--web-space-8,8px)] h-[40px] items-center justify-center relative rounded-[var(--web-radius-button,16px)] shrink-0 w-[128px]" label="取消" style="Secondary" />
+            <CyButton className="content-stretch flex gap-[var(--web-space-8,8px)] h-[40px] items-center justify-center relative rounded-[var(--web-radius-button,16px)] shrink-0 w-[128px]" />
+            <CyButton className="content-stretch flex gap-[var(--web-space-8,8px)] h-[40px] items-center justify-center relative rounded-[var(--web-radius-button,16px)] shrink-0 w-[176px]" label="保存并提交审核" />
+            <p className="[word-break:break-word] font-['Noto_Sans_SC:Regular'] font-normal leading-[18px] relative shrink-0 text-[12px] text-[color:var(--text-secondary,#5a6178)] whitespace-nowrap" data-node-id="5:509">
+              未提交的内容只保留在当前编辑会话
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+SUPER CRITICAL: The generated React+Tailwind code MUST be converted to match the target project's technology stack and styling system.
+1. Analyze the target codebase to identify: technology stack, styling approach, component patterns, and design tokens
+2. Convert React syntax to the target framework/library
+3. Transform all Tailwind classes to the target styling system while preserving exact visual design
+4. Follow the project's existing patterns and conventions
+DO NOT install any Tailwind as a dependency unless the user instructs you to do so.
+
+Node ids have been added to the code as data attributes, e.g. `data-node-id="1:2"`.
+These styles are contained in the design: Cy/Title: Font(family: "Noto Sans SC", style: Bold, size: 24, weight: 700, lineHeight: 32, letterSpacing: 0), Cy/Caption: Font(family: "Noto Sans SC", style: Regular, size: 12, weight: 400, lineHeight: 18, letterSpacing: 0), Cy/Label: Font(family: "Noto Sans SC", style: Medium, size: 14, weight: 500, lineHeight: 22, letterSpacing: 0), Cy/Glass: Effect(type: BACKGROUND_BLUR, radius: 24); Effect(type: DROP_SHADOW, color: #141E3C14, offset: (0, 8), radius: 24, spread: 0), Cy/Heading: Font(family: "Noto Sans SC", style: Bold, size: 16, weight: 700, lineHeight: 24, letterSpacing: 0), Cy/Body: Font(family: "Noto Sans SC", style: Regular, size: 14, weight: 400, lineHeight: 22, letterSpacing: 0), Cy/Reading: Font(family: "Noto Sans SC", style: Regular, size: 15, weight: 400, lineHeight: 26, letterSpacing: 0).
+Component descriptions: The following components have usage descriptions or documentation links defined in Figma. These descriptions provide important context about the intended usage, best practices, and any constraints for each component. Follow these guidelines when implementing or using these components.
+
+## Cy/Sidebar
+**Node ID:** 3:194
+
+春雨孕算管理端公共组件。继承App主题；页面通过实例和属性复用。
+
+## Cy/NavItem
+**Node ID:** 3:71
+
+春雨孕算管理端公共组件。继承App主题；页面通过实例和属性复用。
+
+## Cy/Icon/overview
+**Node ID:** 8:127
+
+来自App原始SVG的可编辑导航图标
+
+## Cy/Icon/content
+**Node ID:** 8:108
+
+来自App原始SVG的可编辑导航图标
+
+## Cy/Icon/review
+**Node ID:** 8:118
+
+来自App原始SVG的可编辑导航图标
+
+## Cy/Icon/users
+**Node ID:** 8:113
+
+来自App原始SVG的可编辑导航图标
+
+## Cy/Icon/system
+**Node ID:** 8:122
+
+来自App原始SVG的可编辑导航图标
+
+## Cy/Button
+**Node ID:** 3:14
+
+春雨孕算管理端公共组件。继承App主题；页面通过实例和属性复用。
+
+## Cy/PageHeader
+**Node ID:** 4:2
+
+管理端复用业务组件；双主题通过Theme继承，文字通过组件属性覆盖。
+
+## Cy/Field
+**Node ID:** 3:40
+
+春雨孕算管理端公共组件。继承App主题；页面通过实例和属性复用。
+
+## Cy/DualExpression/Edit
+**Node ID:** 4:274
+
+管理端复用业务组件；双主题通过Theme继承，文字通过组件属性覆盖。
+
+## Cy/ReferenceEvidence
+**Node ID:** 4:294
+
+管理端复用业务组件；双主题通过Theme继承，文字通过组件属性覆盖。
+The generated code contains image and SVG URL constants, e.g. const image = `${assetPathPrefix}/<asset file name>`, where assetPathPrefix is declared once at the top of the code and every asset URL interpolates it. These URLs are temporary download sources and expire after 7 days. Download each asset into the project with curl -L, then replace its URL in the generated code with a reference to the downloaded asset. Never use the temporary URLs as runtime image sources.

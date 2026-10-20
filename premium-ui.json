@@ -1,0 +1,44 @@
+{
+  "profile": "product-admin",
+  "stage": "implemented",
+  "sourceRoots": [
+    "src"
+  ],
+  "locale": "zh-CN",
+  "canonicalMap": "UX-CONTRACT.md",
+  "requiredCapabilities": [
+    "Table Selection",
+    "Select/Listbox",
+    "Date",
+    "Form",
+    "Scrollbar",
+    "Toast",
+    "CRUD"
+  ],
+  "ownership": {
+    "Select/Listbox": "authored",
+    "Date": "authored"
+  },
+  "requiredCommands": [
+    "docs",
+    "tokens",
+    "types",
+    "unit",
+    "build",
+    "format"
+  ],
+  "commands": {
+    "docs": "node scripts/check-docs.mjs",
+    "tokens": "node scripts/sync-app-theme.mjs --check",
+    "types": "npm.cmd run typecheck",
+    "unit": "npm.cmd test",
+    "build": "npm.cmd run build",
+    "format": "npm.cmd run format:check"
+  },
+  "evidence": {
+    "crudFullFlow": "tests/e2e/admin.spec.ts",
+    "failurePaths": "tests/e2e/admin.spec.ts",
+    "implementation": "docs/IMPLEMENTATION.md",
+    "runtime": "artifacts/runtime/geometry.json"
+  }
+}

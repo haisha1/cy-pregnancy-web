@@ -1,0 +1,215 @@
+---
+version: alpha
+name: "春雨孕算 · 管理端"
+description: "继承 App 蓝青渐变、柔光与圆角玻璃材质的桌面内容管理工作台"
+colors:
+  primary: "#2F6BFF"
+  secondary: "#34C9B8"
+  actionStart: "#285CEC"
+  actionEnd: "#087D72"
+  text: "#1A1A2E"
+  muted: "#5A6178"
+  tertiary: "#697187"
+  background: "#EAF2FF"
+  backgroundMid: "#E6F7F4"
+  backgroundEnd: "#FFF0F6"
+  glass: "rgba(255,255,255,.72)"
+  glassStrong: "rgba(255,255,255,.88)"
+  stroke: "rgba(255,255,255,.65)"
+  fallback: "#F5F9FC"
+  success: "#008755"
+  warning: "#A65300"
+  danger: "#CB2546"
+typography:
+  sans:
+    fontFamily: "-apple-system, BlinkMacSystemFont, Segoe UI, Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif"
+  numeric:
+    fontFamily: "Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif"
+rounded:
+  tag: "8px"
+  input: "12px"
+  button: "16px"
+  card: "24px"
+spacing:
+  unit: "4px"
+  compact: "8px"
+  related: "12px"
+  section: "16px"
+  page: "24px"
+components:
+  button:
+    height: "40px"
+    rounded: "{rounded.button}"
+    backgroundColor: "linear-gradient(120deg, {colors.actionStart}, {colors.actionEnd})"
+    textColor: "#FFFFFF"
+  card:
+    rounded: "{rounded.card}"
+    backgroundColor: "{colors.glass}"
+    textColor: "{colors.text}"
+  input:
+    height: "40px"
+    rounded: "{rounded.input}"
+    backgroundColor: "{colors.glassStrong}"
+    textColor: "{colors.muted}"
+  table-row:
+    height: "52px"
+    textColor: "{colors.text}"
+  dialog:
+    rounded: "{rounded.card}"
+    backgroundColor: "{colors.glassStrong}"
+  app-shell:
+    backgroundColor: "linear-gradient(145deg, {colors.background}, {colors.backgroundMid}, {colors.backgroundEnd})"
+  hero:
+    backgroundColor: "linear-gradient(120deg, {colors.primary}, {colors.secondary})"
+  hint:
+    textColor: "{colors.tertiary}"
+  divider:
+    backgroundColor: "{colors.stroke}"
+  fallback-surface:
+    backgroundColor: "{colors.fallback}"
+  success:
+    textColor: "{colors.success}"
+  warning:
+    textColor: "{colors.warning}"
+  danger:
+    textColor: "{colors.danger}"
+---
+
+# 春雨孕算管理端设计系统
+
+## Overview
+
+**视觉目标：把 App 的同一套界面语言扩展到桌面工作台。** 用户从 App 转向管理端时，应能通过蓝青主色、柔光底、玻璃卡片、圆角和图标立刻识别为同一产品。内容编辑、审核与发布是工作主体，不以医疗仪器、金融驾驶舱或营销首页作为隐喻。
+
+品牌特征集中在页面背景、品牌区和一张总览重点卡片；表格与长文工作面采用同源的高不透明玻璃面，保证持续阅读。桌面适配改变宽度、密度和信息架构，不改变品牌颜色和基本材质。
+
+来源为 App `styles/theme.ts`、`styles/tokens.scss` 和 App DESIGN；这是对现有规范的继承，不是全新配色提案。运行时由 `src/theme/app-palette.generated.ts` 承接 App palette 的构建时快照，由 `src/theme/web-tokens.css` 只定义桌面尺寸与别名；禁止两份手工维护相同颜色。同步值与适配关系须由脚本校验。
+
+## Colors
+
+### 共享色与双主题
+
+| 角色 / 对应 App 变量                  | Light                       | Dark                        | 用途                                           |
+| ------------------------------------- | --------------------------- | --------------------------- | ---------------------------------------------- |
+| 主色 `--primary`                      | #2F6BFF                     | #79A4FF                     | 链接、选中、趋势线；不是所有白字按钮的直接底色 |
+| 品牌卡起点 `--hero-start`             | #2F6BFF                     | #4E86FF                     | 重点卡蓝端                                     |
+| 品牌卡终点 `--hero-end`               | #34C9B8                     | #46D6C4                     | 重点卡青端                                     |
+| 按钮起点/终点 `--action-start/end`    | #285CEC / #087D72           | #285CEC / #087D72           | 白字主按钮；沿用 App 更深的动作渐变            |
+| 正文 `--text-primary`                 | #1A1A2E                     | #F4F7FF                     | 标题、正文                                     |
+| 次文 `--text-secondary`               | #5A6178                     | #AEB8D4                     | 标签、辅助说明                                 |
+| 三级文字 `--text-tertiary`            | #697187                     | #9BA7C6                     | 时间、补充信息；关键数据不降为此级             |
+| 背景三色 `--bg-gradientStart/Mid/End` | #EAF2FF / #E6F7F4 / #FFF0F6 | #0B1020 / #111C38 / #16132E | 整体背景                                       |
+| 卡片 `--glass-fill`                   | rgba(255,255,255,.72)       | rgba(255,255,255,.07)       | 外层卡片、侧栏                                 |
+| 工作面 `--glass-fillStrong`           | rgba(255,255,255,.88)       | rgba(20,28,54,.86)          | 表格、正文、字段、浮层                         |
+| 描边 `--glass-stroke`                 | rgba(255,255,255,.65)       | rgba(255,255,255,.14)       | 卡片材质边缘，不作为输入错误边框               |
+| 降级面 `--glass-fallback`             | #F5F9FC                     | #19233D                     | 不支持模糊或需要实色时                         |
+| 成功 `--success`                      | #008755                     | #41DAAC                     | 审核批准、成功回执；不代表医学正常             |
+| 警告 `--warning`                      | #A65300                     | #FFB03A                     | 驳回待修订、风险操作                           |
+| 危险 `--danger`                       | #CB2546                     | #FF91A6                     | 错误、停用等有后果的操作                       |
+
+强调背景沿用 App 的 `--tint-blue/teal/pink/orange`；粉色只作为远离阅读中心的柔光或小面积中性分类底，不代表母婴商城，也不代替危险色。
+
+首批高保真必须覆盖 Light/Dark。默认跟随系统，可在账号菜单选择跟随系统/浅色/深色；切换保留表单、筛选、滚动和焦点。此偏好属于 Web，不写入 App 用户偏好。
+
+### 颜色使用边界
+
+- 品牌渐变适合总览重点卡、登录品牌标记和主要按钮；表头、正文、每一行、每一个图表都不铺渐变。
+- 无数据、未接入、等待审核为中性或信息态，不能显示成成功绿。
+- 焦点使用共享主色外环并保留与背景分隔，所有状态配文字/图标。对比度按实际合成后的背景验收。
+- 危险动作按钮的Web适配令牌 `--danger-action` 在双主题都引用App浅色危险原始色 #CB2546，承载白字；深色 #FF91A6 继续用于危险文字与提示，不直接作为白字按钮底。
+- 品牌卡内正文需要稳定的高对比承载区；不能假定白字覆盖蓝青渐变全段都满足可读性。
+
+## Typography
+
+使用与 App 相同的中文系统无衬线字体栈，不引入衬线展示体或远程字体依赖。数字使用 numeric 栈与 `tabular-nums`；requestId 可用系统等宽字体，但不把全站做成仪表终端。
+
+| 角色      | 桌面值           | 说明                     |
+| --------- | ---------------- | ------------------------ |
+| 页面标题  | 24px / 32px，600 | 与卡片标题拉开层次       |
+| 区块标题  | 16px / 24px，600 | 卡片、侧栏分组           |
+| 正文/控件 | 14px / 22px      | 表单、表格、说明         |
+| 长文审核  | 15px / 26px      | 双表达正文，舒适阅读变体 |
+| 辅助      | 12px / 18px      | 不承载唯一错误原因       |
+| 总览数字  | 32px / 40px，600 | 有真实数据才显示         |
+
+表格数值右对齐，日期/版本稳定对齐；标题截断时提供键盘可达的全文入口。中文页面不以英文大写 eyebrow 或巨大数字作为装饰。
+
+## Layout
+
+### 桌面壳层
+
+1440×900 为主画板，另交付 1280×720 与 1920×1080。侧栏 232px，内容顶栏 64px，页面边距 24px，区块间距 16px，内容内边距 20–24px。内容最大宽度 1600px；长文编辑与阅读主区最大 1200px，避免宽屏下文本跨越整屏。
+
+侧栏是圆角玻璃导航面，距视口边缘 16px；主区保持统一顶部与左边线。顶部只放面包屑、主题和账号，标题/说明/主操作放在页面头部，避免重复标题。
+
+| 可用宽度    | 变换                                                                           |
+| ----------- | ------------------------------------------------------------------------------ |
+| ≥1280px     | 232px 展开侧栏，审核双栏                                                       |
+| 1024–1279px | 72px 图标侧栏，图标保留可访问名与提示；正文可按空间收窄                        |
+| <1024px     | 顶部导航按钮打开抽屉；编辑/审核双栏变纵向完整区块                              |
+| 390px       | 保证登录、错误页、只读和关键操作可达；宽表格独立横滚，不承诺手机上等效高效编辑 |
+
+长页面自然纵向滚动；表格默认随页面纵向滚动，横向溢出由表格区域承担。只有明确启用的“固定高度数据表”变体拥有内部纵滚，不能把共享页面壳设为 overflow:hidden。吸附操作栏为底部内容留空，不遮住焦点和最后一个字段。
+
+## Elevation & Depth
+
+继承 App 的玻璃语法：1px 描边、顶部内高光、24px 背景模糊、`0 8px 24px rgba(20,30,60,.10)` 外阴影。卡片可用普通玻璃；长文、表格、菜单、弹窗必须使用 strong 工作面。深色不要把浅色白卡简单反相，也不做发光描边。
+
+全屏只放一层静态蓝/青/粉柔光，不循环漂浮；表格行、单元格和嵌套表单组不反复叠加 backdrop-filter。不支持模糊或低性能策略启用时使用对应主题 fallback，层级与文字对比保持。模糊不是阅读所必需的效果。
+
+## Shapes
+
+卡片/弹窗 24px、主按钮 16px、输入 12px、状态标签 8px，直接继承 App 层级。卡片不要缩成旧稿的 10px，也不把所有元素变为胶囊。
+
+桌面命名变体：控件高度 40px（App 44px）、紧凑行操作 32px、触屏主要控件至少 44px；表格行高默认 52px。差异仅服务密度，不创建第二套按钮颜色或交互。
+
+## Components
+
+基础组件及所有权见 [COMPONENTS](docs/COMPONENTS.md)，行为见 [UX-CONTRACT](UX-CONTRACT.md)。组件应先建立再生成页面，使用同一主题变量和状态，不在每页复制玻璃样式。
+
+### Foundational visual states
+
+按钮、字段、页签覆盖默认、hover、focus-visible、active、selected、disabled、busy、error；列表覆盖 loading、empty、no-results、error、stale。加载保持容器和按钮尺寸；没有数据的指标不画示意折线。弹层、选择器与日期面板的展开态同样需要双主题设计。
+
+### Buttons and actions
+
+每个决策区一个主操作。主动作使用 App 动作渐变；次级按钮使用 strong 玻璃工作面和描边，低优先级使用文字。危险动作单独分组，最后一步使用明确语义按钮。批准与发布是不同动作，状态颜色不改变权限规则。
+
+### Navigation and data display
+
+当前导航使用蓝色文字/图标和浅蓝 tinted 底，延续 App tab 的识别方式。表格整体是一个 24px 玻璃工作面，表头用高不透明层，行使用细分隔与轻微 hover；不用粗重网格，不给每行加独立卡片阴影。日期和版本时间线只表达真实时间/状态，不添加“孕周轴”。
+
+总览至多一张蓝青重点卡，其余是同源玻璃指标卡、趋势与待办；有限真实信息不撑成六块空 KPI。图表首序列为 primary，次序列为 secondary；状态色留给有语义的数据，不能拿红点暗示临床异常。
+
+### Forms and overlays
+
+字段标签置上，保留帮助/错误区。双表达编辑器用等宽双栏 strong 面，底部固定操作条与主区对齐。正文是纯文本，无虚假富文本工具栏。日期/下拉为统一的 authored 可访问组件，外观从同一令牌映射。
+
+### Iconography and motion
+
+优先复用 App Figma 图标的语义和线性风格；缺少管理图标时使用同网格、同笔画粗细的一套补充图标，不能在一页混用 emoji、彩色立体图标和线性图标。Web 不引用 App 临时下载地址。
+
+反馈过渡 120–180ms，弹层 180–220ms；无开场 KPI 翻牌、无闪烁状态点。减少动态偏好下取消位移与渐变动画，保留立即可见的状态反馈。
+
+### Token mapping
+
+| 来源                    | 未来运行时目标                                   | 使用方                   |
+| ----------------------- | ------------------------------------------------ | ------------------------ |
+| App palettes Light/Dark | app-palette.generated.ts → CSS 同名变量          | 所有共享组件与 canvas    |
+| App 字体/8–24px 圆角    | web-tokens.css 共享别名                          | Field/Card/Button/Dialog |
+| 本文桌面尺寸            | `--web-sidebar-width`、`--web-control-height` 等 | AdminShell/Table/Form    |
+| 组件状态组合            | 共享组件 variants                                | 页面仅使用命名属性       |
+
+运行文件已经生成，tokens:check验证与App同源。设计端变量 `Theme` 的 Light/Dark、`Dimensions` 的共享与 desktop 尺寸分别维护；不得用一个巨大截图替代组件，也不得给每个页面创建独立色板。
+
+## Do's and Don'ts
+
+- 同时摆放 App 工具页和 Web 知识列表比较颜色、圆角、工作面、按钮；桌面数据密度高也应看得出同一产品。
+- 保留蓝青粉柔光与圆角玻璃，正文使用 strong 面；一致性与可读性一起验收。
+- 不沿用旧青绿 #167C80 主色、珊瑚强调、低圆角仪器面板、孕周轴、黑底霓虹大屏。
+- 不把 App 手机底栏、系统胶囊、390px 最大内容宽度或全局表达开关复制到桌面后台。
+- 不把 Figma 样例数据、审核状态或 API 能力标签当作真实运营/医学结果。
+
+## Web小字号文字变体
+
+经浏览器axe检查，浅蓝/浅青底上的12–14px原品牌文字对比度不足；Web集中使用--link-text（浅色#2458D4/深色#9AB9FF）与--status-success-text（浅色#006F46/深色#5FE0AE）承载链接和状态小字。品牌主色、图标、渐变和App palette保持原值，变体不散落到页面。
