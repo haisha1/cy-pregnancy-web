@@ -1,0 +1,23 @@
+name: cy-pregnancy-web
+services:
+  web:
+    image: ${WEB_IMAGE:?请通过 deploy/jenkins-build.sh 发布或指定 WEB_IMAGE}
+    container_name: cy-pregnancy-web
+    restart: unless-stopped
+    init: true
+    mem_limit: ${WEB_MEMORY_LIMIT:-96m}
+    pids_limit: 64
+    stop_grace_period: 15s
+    ports:
+      - '127.0.0.1:18080:8080'
+    logging:
+      driver: local
+      options:
+        max-size: '10m'
+        max-file: '3'
+    networks:
+      - service-internal
+networks:
+  service-internal:
+    external: true
+    name: ${SERVICE_NETWORK:-cy-pregnancy-internal}

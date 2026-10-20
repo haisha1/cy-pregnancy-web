@@ -1,5 +1,7 @@
 # 春雨孕算 · 管理端 Web
 
+生产部署见[部署步骤](DOCKER-DEPLOY.md)：Jenkins 构建 dist，Compose 发布 Nginx，宝塔代理到 `127.0.0.1:18080`。容器通过共享网络代理管理 API。
+
 Vue 3 + TypeScript + Vite 管理工作台，沿用App蓝青渐变、玻璃卡片和双主题。已经接入真实Java管理服务与用户只读服务，覆盖登录、工作台、知识版本、独立审核、发布下架、用户查询、管理员、角色和审计。
 
 设计来源：[Figma设计](https://www.figma.com/design/aDVCwXrPWAwvhPTZBGFBLT?node-id=9-3243)、[交互原型](https://www.figma.com/proto/aDVCwXrPWAwvhPTZBGFBLT?node-id=11-180)。颜色从 [App palette](../app/cy-pregnancy/styles/theme.ts) 自动生成，前端不维护第二套品牌色。
@@ -47,6 +49,6 @@ npm run build
 npm run test:e2e
 ```
 
-Bearer仅存内存，刷新页面需要重新登录。知识草稿在会话过期时按账号在本标签页内存暂存，刷新或关闭不恢复。生产使用同源HTTPS，样例见 [Nginx](deploy/nginx.conf.example)。
+Bearer仅存内存，刷新页面需要重新登录。知识草稿在会话过期时按账号在本标签页内存暂存，刷新或关闭不恢复。生产使用同源HTTPS，样例见 [Nginx](deploy/baota-docker.conf.example)。
 
 知识发布已接通用户服务只读分发。医学模型发布、OCR、云同步、反馈、删除申请、MFA和回滚仍属后续独立能力。管理端不读取用户孕期健康明细，也不产生新临床公式。

@@ -28,7 +28,9 @@
 
 ## 部署与运行
 
-本机启动见 [README](../README.md)，脚本不展示随机密码/密钥，前端VITE变量不得放秘密。生产构建dist目录，Nginx样例见 [配置](../deploy/nginx.conf.example)，需提供实际HTTPS证书、管理入口访问控制和服务配置。
+生产部署见 [Jenkins + Docker 部署步骤](../DOCKER-DEPLOY.md)：Jenkins 构建 dist，Compose 发布 Nginx，宝塔代理到本机 18080。保留健康检查、日志轮转及 API 代理；服务器运行和后端联调需单独验收。
+
+本机启动见 [README](../README.md)，脚本不展示随机密码/密钥，前端VITE变量不得放秘密。生产构建dist目录，Nginx样例见 [配置](../deploy/baota-docker.conf.example)，需提供实际HTTPS证书、管理入口访问控制和服务配置。
 
 两个服务通过环境变量配置相同的ADMIN_READ_KEY（至少32字符、独立随机值），管理服务另配USER_READ_URL，容器中不能沿用127.0.0.1指向另一容器。JWT_SECRET与ADMIN_JWT_SECRET仍分开。生产禁用bootstrap，使用已有安全管理员管理其他账号，不授予所有角色作默认值。
 

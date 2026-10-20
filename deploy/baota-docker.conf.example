@@ -1,0 +1,16 @@
+# 放入admin.chunyunc.top的宝塔Nginx server块。
+# 该管理站点须同时配置HTTPS及实际办公IP白名单/VPN访问限制。
+# 这里整站转发到Web容器，容器负责静态资源和/admin/api/。
+# 不要与旧的静态dist location /配置同时使用。
+location / {
+    proxy_pass http://127.0.0.1:18080;
+    proxy_http_version 1.1;
+    proxy_set_header Host $host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $remote_addr;
+    proxy_set_header X-Forwarded-Proto $scheme;
+    proxy_connect_timeout 5s;
+    proxy_read_timeout 35s;
+    client_max_body_size 256k;
+    access_log off;
+}
