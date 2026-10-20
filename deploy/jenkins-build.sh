@@ -1,7 +1,7 @@
 #!/bin/sh
 # Web 发布唯一入口：在 Jenkins 仓库工作区执行 sh deploy/jenkins-build.sh。
 # 使用 POSIX sh，兼容 Jenkins 默认 /bin/sh；禁止同时执行多个发布任务。
-# 端口由 compose.yml 管理：宿主机 127.0.0.1:18080 -> 容器 8080。
+# 端口由 compose.yml 管理：宿主机 0.0.0.0:18080 -> 容器 8080，兼容 IP 直连和宝塔代理。
 set -eu
 cd "$(dirname "$0")/.."
 
@@ -69,7 +69,7 @@ done
 log "工作目录：$(pwd)"
 log "构建编号：$BUILD_NUMBER；镜像：$WEB_IMAGE"
 log "共享网络：$SERVICE_NETWORK"
-log "端口：127.0.0.1:18080 -> 容器 8080"
+log "端口：0.0.0.0:18080 -> 容器 8080"
 git log -1 --format='提交：%h %s'
 
 step "2/8 检查 Node 与 Docker 环境"
@@ -138,7 +138,8 @@ log "容器健康检查及首页检查通过。"
 step "8/8 发布结果"
 docker compose ps
 log "部署成功：$WEB_IMAGE"
-log "宝塔反向代理目标：http://127.0.0.1:18080"
+log "IP 访问：http://服务器公网IP:18080（需安全组和防火墙放行 TCP 18080）"
+log "域名访问：宝塔反向代理到 http://127.0.0.1:18080，配置域名及证书后使用"
 log "耗时：$(( $(date +%s) - STARTED_AT )) 秒"
 log "此检查验证前端；登录和管理 API 还需 Java 后端正常运行。"
 # 全流程成功后解除恢复标记，不删除历史镜像、Jenkins 容器或数据库。

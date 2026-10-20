@@ -1,6 +1,6 @@
 # 春雨孕算 · 管理端 Web
 
-生产部署见[部署步骤](DOCKER-DEPLOY.md)：Jenkins 构建 dist，Compose 发布 Nginx，宝塔代理到 `127.0.0.1:18080`。容器通过共享网络代理管理 API。
+生产部署见[部署步骤](DOCKER-DEPLOY.md)：Jenkins 构建 dist，Compose 发布 Nginx，支持 `http://服务器公网IP:18080` 直连，以及宝塔代理到 `127.0.0.1:18080` 的域名访问。容器通过共享网络代理管理 API。
 
 Vue 3 + TypeScript + Vite 管理工作台，沿用App蓝青渐变、玻璃卡片和双主题。已经接入真实Java管理服务与用户只读服务，覆盖登录、工作台、知识版本、独立审核、发布下架、用户查询、管理员、角色和审计。
 
