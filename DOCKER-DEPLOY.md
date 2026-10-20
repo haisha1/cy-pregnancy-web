@@ -8,7 +8,7 @@
 | --- | --- |
 | Jenkinsfile | 可选 Pipeline 入口，禁止并发，保留最近 10 次构建 |
 | deploy/jenkins-build.sh | 自由风格任务及 Pipeline 共用构建发布脚本 |
-| Dockerfile.prebuilt、.dockerignore | 仅打包 dist 和容器配置 |
+| Dockerfile、.dockerignore | 仅打包 dist 和容器配置 |
 | compose.yml | 镜像、端口、资源、日志和共享网络 |
 | .env.example | 非敏感参数参考 |
 | deploy/docker/nginx.conf | SPA、缓存、健康检查和 API 代理 |
