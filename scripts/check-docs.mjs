@@ -7,7 +7,7 @@ const root = fileURLToPath(new URL("../", import.meta.url));
 const files = [];
 function walk(dir) {
   for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
-    if (["archive","node_modules","dist","test-results","playwright-report",".local","artifacts"].includes(entry.name)) continue;
+    if ([".git","node_modules","dist","test-results","playwright-report",".local","artifacts"].includes(entry.name)) continue;
     const target = path.join(dir, entry.name);
     if (entry.isDirectory()) walk(target);
     else if (entry.name.endsWith(".md")) files.push(target);
@@ -16,7 +16,11 @@ function walk(dir) {
 walk(root);
 const failures = [];
 let localLinks = 0;
+const docsRoot = path.join(root, "docs") + path.sep;
 for (const file of files) {
+  if (!file.startsWith(docsRoot)) {
+    failures.push(`${path.relative(root, file)}: 项目文档必须放在 docs/ 目录内`);
+  }
   const body = fs.readFileSync(file, "utf8").replace(/```[\s\S]*?```/g, "");
   for (const match of body.matchAll(/\[[^\]\n]+\]\(([^)]+)\)/g)) {
     const href = match[1];
@@ -31,7 +35,7 @@ for (const file of files) {
   }
 }
 const requirements = fs.readFileSync(
-  path.join(root, "REQUIREMENTS.md"),
+  path.join(root, "docs/需求说明.md"),
   "utf8",
 );
 const ids = [...requirements.matchAll(/^\| (W\d{2}) \|/gm)].map((m) => m[1]);
@@ -47,7 +51,7 @@ const source = fs.readFileSync(
   path.join(root, "../app/cy-pregnancy/styles/theme.ts"),
   "utf8",
 );
-const design = fs.readFileSync(path.join(root, "DESIGN.md"), "utf8");
+const design = fs.readFileSync(path.join(root, "docs/视觉设计规范.md"), "utf8");
 const light = source.split("light: {")[1]?.split("dark: {")[0] ?? "";
 const expected = {
   primary: "--primary",

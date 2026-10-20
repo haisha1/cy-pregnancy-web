@@ -10,7 +10,6 @@ export default defineConfig({
         "**/playwright-report/**",
         "**/.local/**",
         "**/docs/**",
-        "**/archive/**",
       ],
     },
     port: 5174,

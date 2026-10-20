@@ -1,6 +1,5 @@
 node_modules
 dist
-archive
 artifacts
 docs
 src/theme/app-palette.generated.ts

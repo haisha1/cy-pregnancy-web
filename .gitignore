@@ -7,3 +7,6 @@ dist/
 !.env.example
 test-results/
 playwright-report/
+
+# 浏览器验收输出由测试生成，不提交历史产物。
+artifacts/
